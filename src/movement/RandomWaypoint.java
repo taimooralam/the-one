@@ -31,7 +31,21 @@ public class RandomWaypoint extends MovementModel {
 	@Override
 	public Coord getInitialLocation() {
 		assert rng != null : "MovementModel not initialized!";
-		Coord c = randomCoord();
+		//Coord c = randomCoord();
+		Coord c;
+
+		double maxX = getMaxX();
+		double maxY = getMaxY();
+		double var = rng.nextDouble() * 16;
+		if (var < 10){ //entrance 1 main entrance
+			c = new Coord(0.1 * maxX,maxY);
+		}else if (var < 12){ // entrance 2
+			c = new Coord(0,0.1 * maxY);
+		}else if (var < 14){ // entrance 3
+			c = new Coord(0.8 * maxX,0);
+		}else{ // entrance 4
+			c = new Coord(maxX,0.5 * maxY);
+		}
 
 		this.lastWaypoint = c;
 		return c;
