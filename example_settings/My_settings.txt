@@ -1,0 +1,75 @@
+Scenario.name = MyScenario
+Scenario.endTime = 24000
+Scenario.updateInterval = 10
+Scenario.simulateConnections = false
+MovementModel.worldSize = 60,30
+Scenario.nrofHostGroups = 1
+Events.nrof = 0
+Scenario.nrofHostGroups = 5
+
+# the teachers group
+Group1.groupID = t1
+Group1.nrofHosts = 5
+Group1.nrofInterfaces = 1
+Group1.interface1 = myInterface
+Group1.waitTime = 200,200
+Group1.activeTimes = 8000, 17000
+
+# the students1 group
+Group2.groupID = s1
+Group2.nrofHosts = 2
+Group2.nrofInterfaces = 1
+Group2.interface1 = myInterface
+Group2.waitTime = 200,200
+Group2.activeTimes = 8000, 14000
+
+# the students2 group
+Group3.groupID = s2
+Group3.nrofHosts = 10
+Group3.nrofInterfaces = 1
+Group3.interface1 = myInterface
+Group3.waitTime = 200,200
+Group3.activeTimes = 10000, 16000
+
+# the students3 group
+Group4.groupID = s3
+Group4.nrofHosts = 6
+Group4.nrofInterfaces = 1
+Group4.interface1 = myInterface
+Group4.activeTimes = 12000, 17000
+
+# the students4 group
+Group5.groupID = s4
+Group5.nrofHosts = 2
+Group5.movementModel = RandomWalk
+Group5.nrofInterfaces = 1
+Group5.interface1 = myInterface
+Group5.waitTime = 200,200
+Group5.activeTimes = 14000, 18000
+
+myInterface.type = SimpleBroadcastInterface
+myInterface.transmitRange = 2
+myInterface.transmitSpeed = 1
+Group1.movementModel = RandomWaypoint
+Group1.router = PassiveRouter
+Group2.movementModel = RandomWaypoint
+Group2.router = PassiveRouter
+Group3.movementModel = RandomWaypoint
+Group3.router = PassiveRouter
+Group4.movementModel = RandomWaypoint
+Group4.router = PassiveRouter
+Group5.router = PassiveRouter
+
+## Map based movement -movement model specific settings
+MapBasedMovement.nrofMapFiles = 1
+MapBasedMovement.mapFile1 = data/MIbuilding.wkt
+
+
+Report.nrofReports = 5
+Report.report1 = TotalContactTimeReport
+Report.report2 = TotalEncountersReport
+Report.reportDir = SimReports
+Report.report3 = InterContactTimesReport
+Report.report4 =  MovementListenerTestReport
+Report.granularity = 1000
+Report.report5 = LocationSnapshotReport

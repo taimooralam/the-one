@@ -404,9 +404,41 @@ public class DTNHost implements Comparable<DTNHost> {
 				this.location.getX());
 		dy = (possibleMovement/distance) * (this.destination.getY() -
 				this.location.getY());
-		this.location.translate(dx, dy);
+
+		if(this.destination.getX() == 0 || this.destination.getY() == 0) {
+			this.nextTimeToMove = SimClock.getTime() + 7200;
+		}
+		else
+			this.location.translate(dx, dy);
+
 	}
 
+	private boolean IsClasPosition(Coord targetValue) {
+		for (int i = 0; i<classPosition.length; i++) {
+			if (classPosition[i].equals(targetValue))
+				return true;
+		}
+		return false;
+	}
+
+	private Coord classPosition[] = {new Coord(60, 20),
+			new Coord(60, 10),
+			new Coord(60, 11),
+			new Coord(60, 12),
+			new Coord(60, 13),
+			new Coord(60, 14),
+			new Coord(60, 15),
+			new Coord(60, 30),
+			new Coord(60, 31),
+			new Coord(60, 32),
+			new Coord(60, 33),
+			new Coord(60, 34),
+			new Coord(60, 35),
+			new Coord(50, 0),
+			new Coord(51, 0),
+			new Coord(52, 0),
+			new Coord(53, 0),
+			new Coord(54, 0),};
 	/**
 	 * Sets the next destination and speed to correspond the next waypoint
 	 * on the path.

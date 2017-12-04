@@ -6,6 +6,7 @@ package movement;
 
 import core.Coord;
 import core.Settings;
+import java.util.Random;
 
 /**
  * Random waypoint movement model. Creates zig-zag paths within the
@@ -14,6 +15,8 @@ import core.Settings;
 public class RandomWaypoint extends MovementModel {
 	/** how many waypoints should there be per path */
 	private static final int PATH_LENGTH = 1;
+
+	private Coord[] entryPoints = {new Coord(80,0), new Coord(60, 20), new Coord(0, 30), new Coord(40, 10)};
 	private Coord lastWaypoint;
 
 	public RandomWaypoint(Settings settings) {
@@ -31,7 +34,7 @@ public class RandomWaypoint extends MovementModel {
 	@Override
 	public Coord getInitialLocation() {
 		assert rng != null : "MovementModel not initialized!";
-		Coord c = randomCoord();
+		Coord c = getRandomStartPoint();
 
 		this.lastWaypoint = c;
 		return c;
@@ -62,4 +65,13 @@ public class RandomWaypoint extends MovementModel {
 		return new Coord(rng.nextDouble() * getMaxX(),
 				rng.nextDouble() * getMaxY());
 	}
+
+
+
+	private Coord getRandomStartPoint() {
+		int rnd = new Random().nextInt(entryPoints.length);
+		return entryPoints[rnd];
+	}
+
+
 }
